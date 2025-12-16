@@ -1409,7 +1409,6 @@
 
             <div class="projects-grid">
                 <div class="project-card fade-in">
-                    <div class="project-image">🚀</div>
                     <div class="project-content">
                         <h3 class="project-title">Career Advance</h3>
                         <p class="project-description">
@@ -1435,7 +1434,6 @@
                 </div>
 
                 <div class="project-card fade-in">
-                    <div class="project-image">⭐</div>
                     <div class="project-content">
                         <h3 class="project-title">Employee Review System</h3>
                         <p class="project-description">
@@ -1461,7 +1459,6 @@
                 </div>
 
                 <div class="project-card fade-in">
-                    <div class="project-image">☕</div>
                     <div class="project-content">
                         <h3 class="project-title">Masquerade Cafe</h3>
                         <p class="project-description">
@@ -1487,7 +1484,6 @@
                 </div>
 
                 <div class="project-card fade-in">
-                    <div class="project-image">🎉</div>
                     <div class="project-content">
                         <h3 class="project-title">Mystery Rooms Birthday Landing</h3>
                         <p class="project-description">
@@ -1513,7 +1509,6 @@
                 </div>
 
                 <div class="project-card fade-in">
-                    <div class="project-image">📦</div>
                     <div class="project-content">
                         <h3 class="project-title">Inventory Management System</h3>
                         <p class="project-description">
@@ -1539,7 +1534,6 @@
                 </div>
 
                 <div class="project-card fade-in">
-                    <div class="project-image">🎮</div>
                     <div class="project-content">
                         <h3 class="project-title">Game Inspection System</h3>
                         <p class="project-description">
@@ -1624,22 +1618,22 @@
 
                 <div class="contact-form-wrapper fade-in">
                     <h3>Send a Message</h3>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/mzznlkja" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="your@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="Project Discussion">
+                            <input type="text" id="subject" name="subject" placeholder="Project Discussion">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" placeholder="Tell me about your project..." required></textarea>
+                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-submit">
                             Send Message
@@ -1789,22 +1783,18 @@
         const contactForm = document.getElementById('contactForm');
 
         contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+            // Let Formspree handle the submission naturally
+            // Show loading state
+            const submitBtn = contactForm.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
             
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Here you would typically send the form data to a server
-            console.log('Form submitted:', { name, email, subject, message });
-            
-            // Show success message (you can customize this)
-            alert('Thank you for your message! I will get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
+            // Re-enable after 3 seconds (Formspree will redirect)
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
         });
 
         // ===== Current Year =====
@@ -1858,5 +1848,8 @@
         setTimeout(typeText, 1500);
         */
     </script>
+    
+
 </body>
 </html>
+
